@@ -1,122 +1,39 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+html, body {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove padding padrão */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 20px;
+.header-background {
+    background-image: url('header.jpg'); /* Substitua pela URL da sua imagem */
+    background-size: cover; /* Mantém a imagem coberta */
+    background-position: center 70%; /* Ajusta para mostrar mais da parte inferior */
+    padding: 40px; /* Espaçamento interno */
+    min-height: 300px; /* Altura mínima do cabeçalho */
+    position: relative; /* Para permitir posicionamento absoluto dos filhos */
 }
 
-.carousel {
-    position: relative;
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
+/* Estilo do h1 */
+h1 {
+    font-size: 1vw; /* Tamanho da fonte em vw para ser responsivo */
+    color: black; /* Cor do texto */
+    position: absolute; /* Posiciona o h1 de forma absoluta */
+    top: 20px; /* Distância do topo */
+    left: 20px; /* Distância da esquerda */
+    margin: 0; /* Remove margens padrão */
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    transition: transform 0.5s ease;
-}
-
-.circle {
-    border: 2px solid #4CAF50;
-    border-radius: 50%;
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    flex: 0 0 200px; /* Flex basis to maintain size */
-}
-
-.circle.active {
-    transform: scale(1.2); /* Aumenta o tamanho do elemento ativo */
-    background-color: #e0ffe0; /* Muda a cor de fundo do ativo */
-}
-
-.news-container {
-    text-align: center;
-    margin: 20px;
-}
-
-.person {
-    display: inline-block;
-    margin: 10px;
-}
-
-.person-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
-
-.footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #e0e0e0;
-}
-
-.contact-info {
-    margin-top: 10px;
-}
-
-/* Estilos Responsivos */
+/* Media Queries para telas menores */
 @media (max-width: 768px) {
-    .circle {
-        width: 150px;
+    .header-background {
+        padding: 20px; /* Ajusta o padding em dispositivos menores */
+        min-height: 200px; /* Altura mínima menor em dispositivos móveis */
     }
-    .person {
-        margin: 5px;
+
+    h1 {
+        font-size: 5vw; /* Tamanho da fonte em vw para telas menores */
+        top: 10px; /* Ajusta a distância do topo em telas menores */
+        left: 10px; /* Ajusta a distância da esquerda em telas menores */
     }
-}
-
-@media (max-width: 480px) {
-    header {
-        font-size: 20px;
-    }
-    .carousel {
-        max-width: 100%;
-    }
-    .circle {
-        width: 120px;
-    }
-}
-
-
-.footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #e0e0e0;
-    margin-top: 20px; /* Espaço acima do rodapé */
-}
-
-.footer p {
-    margin: 10px 0; /* Espaço entre os parágrafos */
-}
-
-.contact-info {
-    margin-top: 15px; /* Espaço acima das informações de contato */
-    background-color: #4A90E2; /* Cor de fundo diferente */
-    color: white; /* Cor do texto */
-    display: inline-block; /* Permite que fique menor */
-    padding: 10px; /* Espaço interno */
-    border-radius: 5px; /* Bordas arredondadas */
-}
-
-.contact-info a {
-    color: white; /* Cor do texto dos links */
-    text-decoration: none; /* Remove o sublinhado */
-    margin: 0 10px; /* Espaço entre os links */
-}
-
-.contact-info a:hover {
-    text-decoration: underline; /* Sublinha ao passar o mouse */
 }
