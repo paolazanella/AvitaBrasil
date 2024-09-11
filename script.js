@@ -1,32 +1,36 @@
-let currentSlide = 0;
+let currentIndex = 0;
+const items = document.querySelectorAll('.carousel-item');
+const totalItems = items.length;
 
-function updateActiveClass() {
-    const slides = document.querySelectorAll('.circle');
-    slides.forEach((slide, index) => {
-        slide.classList.remove('active');
-        if (index === currentSlide) {
-            slide.classList.add('active');
-        }
-    });
-}
-
+// Função para mover o slide
 function moveSlide(direction) {
-    const slides = document.querySelectorAll('.circle');
-    const totalSlides = slides.length;
+    // Remove a classe 'active' do círculo atual
+    items[currentIndex].classList.remove('active'); 
 
-    currentSlide += direction;
+    // Calcula o novo índice
+    currentIndex = (currentIndex + direction + totalItems) % totalItems; 
 
-    if (currentSlide < 0) {
-        currentSlide = totalSlides - 1;
-    } else if (currentSlide >= totalSlides) {
-        currentSlide = 0;
-    }
+    // Adiciona a classe 'active' ao novo círculo
+    items[currentIndex].classList.add('active'); 
 
-    const container = document.querySelector('.container');
-    container.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    updateActiveClass();
+    // Atualiza a posição do carrossel
+    updateCarousel();
 }
 
-// Inicializa a classe 'active' no primeiro slide
-updateActiveClass();
+// Atualiza a posição do carrossel
+function updateCarousel() {
+    const offset = -currentIndex * 25; // Ajusta a posição do carrossel
+    document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+}
+
+// Adiciona a classe 'active' ao primeiro círculo inicialmente
+items[currentIndex].classList.add('active');
+
+// Adiciona event listeners para os botões
+document.querySelector('.prev').onclick = () => moveSlide(-1);
+document.querySelector('.next').onclick = () => moveSlide(1);
+
+// Autoplay (opcional)
+setInterval(() => {
+    moveSlide(1);
+}, 5000); // Muda a cada 5 segundos

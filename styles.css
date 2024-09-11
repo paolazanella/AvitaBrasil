@@ -3,6 +3,7 @@ html, body {
     padding: 0; /* Remove padding padrão */
     width: 100%; /* Largura total */
     height: 100%; /* Altura total */
+    font-family: Arial, sans-serif; /* Fonte padrão */
 }
 
 .header-background {
@@ -21,7 +22,6 @@ h1 {
     position: absolute; /* Posiciona o h1 de forma absoluta */
     top: 20px; /* Distância do topo */
     left: 20px; /* Distância da esquerda */
-    margin: 0; /* Remove margens padrão */
 }
 
 /* Media Queries para telas menores */
@@ -36,4 +36,149 @@ h1 {
         top: 10px; /* Ajusta a distância do topo em telas menores */
         left: 10px; /* Ajusta a distância da esquerda em telas menores */
     }
+}
+
+/* Estilo do Carrossel */
+.carousel {
+    position: relative; /* Permite que os botões sejam posicionados em relação ao carrossel */
+    max-width: 800px; /* Largura máxima do carrossel */
+    height: 300px; /* Altura do carrossel */
+    overflow: hidden; /* Oculta partes que saem do contêiner */
+    margin: 40px auto 0; /* Adiciona margem superior e centraliza horizontalmente */
+}
+
+.carousel-inner {
+    display: flex;
+    justify-content: center; /* Mantém os itens centralizados */
+    align-items: center;
+    transition: transform 0.5s ease; /* Transição suave */
+    overflow: hidden; /* Oculta partes que saem do contêiner */
+}
+
+.carousel-item {
+    flex: 0 0 auto; /* Permite que os itens tenham o tamanho automático */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px; /* Espaçamento entre os círculos */
+    transition: transform 0.3s; /* Transição suave */
+}
+
+.carousel-item.active {
+    transform: scale(1.2); /* Aumenta o círculo ativo */
+    z-index: 1; /* Coloca o círculo ativo acima dos outros */
+}
+
+.carousel-circle {
+    background-color: #ffffff;
+    border: 3px solid #ccc;
+    border-radius: 50%; /* Faz o círculo */
+    padding: 20px;
+    text-align: center; /* Centraliza o texto */
+    width: 220px; /* Aumenta a largura do círculo */
+    height: 220px; /* Aumenta a altura do círculo */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta para o meio do botão */
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 18px; /* Tamanho da fonte */
+}
+
+.prev {
+    left: 15px; /* Posição à esquerda */
+}
+
+.next {
+    right: 15px; /* Posição à direita */
+}
+
+/* Seção de Notícias */
+.news-section {
+    padding: 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    background-color: #f9f9f9; /* Cor de fundo */
+    border-bottom: 1px solid #ccc; /* Linha abaixo da seção */
+}
+
+.news-section h2 {
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    font-size: 1.5em; /* Tamanho da fonte do título */
+    color: #333; /* Cor do texto do título */
+}
+
+/* Seção da Equipe */
+.team-section {
+    padding: 40px 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+}
+
+.team-section h2 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    font-size: 1.5em; /* Tamanho da fonte do título */
+    color: #333; /* Cor do texto do título */
+}
+
+.team-members {
+    display: flex; /* Flexbox para alinhar os membros da equipe */
+    justify-content: center; /* Centraliza os membros */
+    margin-bottom: 20px; /* Espaçamento abaixo da seção de membros */
+}
+
+.team-member {
+    margin: 0 15px; /* Margem entre os membros */
+    text-align: center; /* Centraliza o texto */
+}
+
+.separator {
+    width: 2px; /* Largura da linha */
+    height: 100px; /* Altura da linha */
+    background-color: #ccc; /* Cor da linha */
+}
+
+.member-photo {
+    width: 150px; /* Largura da foto */
+    height: auto; /* Mantém a proporção */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+.team-description {
+    max-width: 800px; /* Largura máxima do texto */
+    margin: 20px auto; /* Centraliza a descrição */
+    font-size: 1em; /* Tamanho da fonte */
+    color: #555; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+}
+.description-background {
+    background-color: #e7e5e4; /* Cor de fundo (exemplo: azul claro) */
+    padding: 15px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    display: inline-block; /* Para que o fundo se ajuste ao tamanho do texto */
+    max-width: 800px; /* Largura máxima do texto */
+    margin: 0 auto; /* Centraliza o bloco */
+}
+
+.contact-info {
+    margin-top: 20px; /* Espaço acima das informações de contato */
+    font-size: 0.9em; /* Tamanho da fonte menor */
+    text-align: center; /* Centraliza o texto */
+    background-color: #6e7e9f; /* Cor de fundo */
+    padding: 10px 0; /* Espaçamento interno */
+}
+
+.contact-info a {
+    text-decoration: none; /* Remove sublinhado dos links */
+    color: black; /* Cor do link */
+}
+
+.contact-info a:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
 }
