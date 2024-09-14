@@ -4,6 +4,7 @@ html, body {
     width: 100%; /* Largura total */
     height: 100%; /* Altura total */
     font-family: Arial, sans-serif; /* Fonte padrão */
+    
 }
 
 .header-background {
@@ -18,7 +19,9 @@ html, body {
 /* Estilo do h1 */
 h1 {
     font-size: clamp(1.5rem, 2vw, 3rem); /* Define tamanho entre 1.5rem e 3rem de forma adaptável */
-    color: black; /* Cor do texto */
+    color: rgb(255, 255, 255); /* Azul escuro */ /* Cor do texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);/* Sombra para melhorar a legibilidade */
+    font-family: 'Roboto', sans-serif; /* Nova fonte */
     position: absolute; /* Posiciona o h1 de forma absoluta */
     top: 20px; /* Distância do topo */
     left: 20px; /* Distância da esquerda */
@@ -26,10 +29,15 @@ h1 {
 
 /* Estilo do Carrossel */
 .carousel {
-    position: relative; /* Necessário para posicionar os controles */
-    max-width: 1000px; /* Largura máxima do carrossel */
+    position: relative;
+    max-width: 800px; /* Largura máxima do carrossel */
     margin: 40px auto; /* Centraliza horizontalmente */
     overflow: hidden; /* Oculta itens que saem do contêiner */
+    background-color: #f0f0f0; /* Cor de fundo clara */
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+
 }
 
 .carousel-inner {
@@ -42,26 +50,33 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 300px; /* Altura fixa para tornar os itens mais quadrados */
     padding: 20px; /* Espaçamento interno */
+    box-sizing: border-box; /* Inclui padding na largura total */
 }
 
 .carousel-circle {
     background-color: #fff; /* Cor de fundo */
     border-radius: 10px; /* Cantos arredondados */
     padding: 20px; /* Espaçamento interno */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
     text-align: center; /* Centraliza o texto */
+    width: 90%; /* Largura do círculo */
+    height: 90%; /* Altura do círculo */
+    display: flex;
+    flex-direction: column; /* Para alinhar texto verticalmente */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
 }
 
 .carousel-control {
     position: absolute; /* Posiciona os botões */
     top: 50%; /* Centraliza verticalmente */
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+    color: rgba(13, 13, 13, 0.316); /* Cor do ícone */
+    border: none; /* Remove a borda */
+    background: none; /* Remove o fundo */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 24px; /* Tamanho do ícone */
     z-index: 1; /* Garante que os botões fiquem na frente */
 }
 
@@ -73,6 +88,10 @@ h1 {
     right: 10px; /* Posição do botão próximo */
 }
 
+/* Efeito ao passar o mouse */
+.carousel-control:hover {
+    color: rgba(255, 255, 255, 0.8); /* Leve aumento na opacidade ao passar o mouse */
+}
 /* Media Queries para telas menores */
 @media (max-width: 768px) {
     .carousel-inner {
