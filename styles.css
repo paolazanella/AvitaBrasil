@@ -17,88 +17,74 @@ html, body {
 
 /* Estilo do h1 */
 h1 {
-    font-size: 1vw; /* Tamanho da fonte em vw para ser responsivo */
+    font-size: clamp(1.5rem, 2vw, 3rem); /* Define tamanho entre 1.5rem e 3rem de forma adaptável */
     color: black; /* Cor do texto */
     position: absolute; /* Posiciona o h1 de forma absoluta */
     top: 20px; /* Distância do topo */
     left: 20px; /* Distância da esquerda */
 }
 
-/* Media Queries para telas menores */
-@media (max-width: 768px) {
-    .header-background {
-        padding: 20px; /* Ajusta o padding em dispositivos menores */
-        min-height: 200px; /* Altura mínima menor em dispositivos móveis */
-    }
-
-    h1 {
-        font-size: 5vw; /* Tamanho da fonte em vw para telas menores */
-        top: 10px; /* Ajusta a distância do topo em telas menores */
-        left: 10px; /* Ajusta a distância da esquerda em telas menores */
-    }
-}
-
 /* Estilo do Carrossel */
 .carousel {
-    position: relative; /* Permite que os botões sejam posicionados em relação ao carrossel */
-    max-width: 800px; /* Largura máxima do carrossel */
-    height: 300px; /* Altura do carrossel */
-    overflow: hidden; /* Oculta partes que saem do contêiner */
-    margin: 40px auto 0; /* Adiciona margem superior e centraliza horizontalmente */
+    position: relative; /* Necessário para posicionar os controles */
+    max-width: 1000px; /* Largura máxima do carrossel */
+    margin: 40px auto; /* Centraliza horizontalmente */
+    overflow: hidden; /* Oculta itens que saem do contêiner */
 }
 
 .carousel-inner {
-    display: flex;
-    justify-content: center; /* Mantém os itens centralizados */
-    align-items: center;
+    display: flex; /* Mantém os itens em uma linha */
     transition: transform 0.5s ease; /* Transição suave */
-    overflow: hidden; /* Oculta partes que saem do contêiner */
 }
 
 .carousel-item {
-    flex: 0 0 auto; /* Permite que os itens tenham o tamanho automático */
+    flex: 0 0 100%; /* Cada item ocupa 100% da largura do carrossel */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px; /* Espaçamento entre os círculos */
-    transition: transform 0.3s; /* Transição suave */
-}
-
-.carousel-item.active {
-    transform: scale(1.2); /* Aumenta o círculo ativo */
-    z-index: 1; /* Coloca o círculo ativo acima dos outros */
+    padding: 20px; /* Espaçamento interno */
 }
 
 .carousel-circle {
-    background-color: #ffffff;
-    border: 3px solid #ccc;
-    border-radius: 50%; /* Faz o círculo */
-    padding: 20px;
+    background-color: #fff; /* Cor de fundo */
+    border-radius: 10px; /* Cantos arredondados */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     text-align: center; /* Centraliza o texto */
-    width: 220px; /* Aumenta a largura do círculo */
-    height: 220px; /* Aumenta a altura do círculo */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-control {
-    position: absolute;
+    position: absolute; /* Posiciona os botões */
     top: 50%; /* Centraliza verticalmente */
-    transform: translateY(-50%); /* Ajusta para o meio do botão */
-    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    color: white;
     border: none;
-    cursor: pointer;
     padding: 10px;
-    z-index: 10;
-    border-radius: 5px; /* Bordas arredondadas */
-    font-size: 18px; /* Tamanho da fonte */
+    cursor: pointer;
+    z-index: 1; /* Garante que os botões fiquem na frente */
 }
 
 .prev {
-    left: 15px; /* Posição à esquerda */
+    left: 10px; /* Posição do botão anterior */
 }
 
 .next {
-    right: 15px; /* Posição à direita */
+    right: 10px; /* Posição do botão próximo */
+}
+
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+    .carousel-inner {
+        justify-content: flex-start; /* Itens se alinham à esquerda */
+    }
+    .carousel-item {
+        width: 120px; /* Ajusta a largura dos itens em telas menores */
+        height: 120px; /* Ajusta a altura dos itens em telas menores */
+    }
+    h1 {
+        font-size: clamp(2rem, 4vw, 5rem); /* Ajusta o tamanho da fonte para telas menores */
+    }
 }
 
 /* Seção de Notícias */
@@ -157,6 +143,7 @@ h1 {
     color: #555; /* Cor do texto */
     text-align: center; /* Centraliza o texto */
 }
+
 .description-background {
     background-color: #e7e5e4; /* Cor de fundo (exemplo: azul claro) */
     padding: 15px; /* Espaçamento interno */
