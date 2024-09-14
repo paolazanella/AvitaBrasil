@@ -8,7 +8,7 @@ html, body {
 }
 
 .header-background {
-    background-image: url('header.jpg'); /* Substitua pela URL da sua imagem */
+    background-image: url('imagens/header.jpg'); /* Substitua pela URL da sua imagem */
     background-size: cover; /* Mantém a imagem coberta */
     background-position: center 70%; /* Ajusta para mostrar mais da parte inferior */
     padding: 40px; /* Espaçamento interno */
