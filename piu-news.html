@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piu News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Fundo preto */
+            color: #333; /* Texto escuro */
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0e68c; /* Amarelo claro */
+            color: #000; /* Texto preto */
+        }
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f0e68c; /* Amarelo claro */
+            color: black; /* Texto preto */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d5c97a; /* Amarelo mais escuro ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Piu News</h1>
+    </header>
+    <main>
+        <ul id="newsList">
+            <!-- As notícias serão adicionadas aqui -->
+        </ul>
+        <button onclick="addNews()">Adicionar Notícia</button>
+    </main>
+
+    <script>
+        const correctPassword = "senha123"; // Defina a senha aqui
+
+        function addNews() {
+            const password = prompt("Digite a senha para adicionar uma notícia:");
+            if (password === correctPassword) {
+                const newsTitle = prompt("Digite o título da notícia:");
+                const newsDate = new Date().toLocaleDateString();
+                if (newsTitle) {
+                    const newsList = document.getElementById("newsList");
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${newsTitle} - ${newsDate}`;
+                    newsList.appendChild(listItem);
+                }
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
+    </script>
+</body>
+</html>
