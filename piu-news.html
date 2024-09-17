@@ -52,7 +52,7 @@
         button.delete {
             background-color: #ff4c4c; /* Vermelho para deletar */
             color: white; /* Texto branco */
-            margin-top: 10px; /* Margem para espaçamento */
+            margin-top: 10px;
         }
         button.delete:hover {
             background-color: #e63939; /* Vermelho mais escuro ao passar o mouse */
@@ -66,16 +66,26 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-        input {
+        input[type="text"] {
             width: calc(100% - 22px);
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        input:focus {
+        input[type="text"]:focus {
             border-color: #4CAF50; /* Cor da borda ao focar */
             outline: none;
+        }
+        #searchContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #searchInput {
+            flex-grow: 1;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -84,20 +94,24 @@
         <h1>Piu News</h1>
     </header>
     <main>
-        <ul id="newsList">
-            <!-- As notícias serão adicionadas aqui -->
-        </ul>
-        <button class="add" onclick="showAddForm()">Adicionar Notícia</button>
+        <div id="searchContainer">
+            <input type="text" id="searchInput" placeholder="Pesquisar por título ou data..." oninput="filterNews()">
+            <button class="add" onclick="showAddForm()">Adicionar Notícia</button>
+        </div>
 
         <div id="newsForm">
             <h2>Adicionar ou Editar Notícia</h2>
             <input type="text" id="newsTitle" placeholder="Título da notícia" required><br>
             <input type="text" id="newsLink" placeholder="Link da notícia" required><br>
-            <input type="text" id="newsDate" placeholder="Data (dd/mm/aaaa)" required><br>
+            <input type="text" id="newsDate" placeholder="Data (dd/mm/aaaa)" required oninput="formatDate(this)"><br>
             <button class="add" onclick="addNews()">Concluir</button>
             <button class="delete" onclick="deleteNews(editingIndex)" style="display:none;">Deletar Notícia</button>
             <button class="add" onclick="hideForm()">Cancelar</button>
         </div>
+
+        <ul id="newsList">
+            <!-- As notícias serão adicionadas aqui -->
+        </ul>
     </main>
 
     <script>
@@ -148,10 +162,38 @@
             editingIndex = null;
         }
 
+        function formatDate(input) {
+            // Remove todos os caracteres que não são números
+            let value = input.value.replace(/\D/g, '');
+
+            // Adiciona a barra após o dia e o mês
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+            if (value.length > 5) {
+                value = value.slice(0, 5) + '/' + value.slice(5, 9);
+            }
+
+            // Atualiza o valor do input
+            input.value = value;
+        }
+
         function addNews() {
             const newsTitle = document.getElementById("newsTitle").value;
-            const newsLink = document.getElementById("newsLink").value;
+            let newsLink = document.getElementById("newsLink").value;
             const newsDate = document.getElementById("newsDate").value;
+
+            // Validar e formatar o link
+            if (!newsLink.startsWith('http://') && !newsLink.startsWith('https://')) {
+                newsLink = 'http://' + newsLink; // Adicionar http:// se necessário
+            }
+
+            // Validar a data
+            const datePattern = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4})$/;
+            if (!datePattern.test(newsDate)) {
+                alert("Data inválida! Use o formato dd/mm/aaaa.");
+                return;
+            }
 
             if (newsTitle && newsLink && newsDate) {
                 const newsList = document.getElementById("newsList");
@@ -183,6 +225,22 @@
             const newsList = document.getElementById("newsList");
             newsList.removeChild(newsList.children[index]);
             hideForm();
+        }
+
+        function filterNews() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const newsList = document.getElementById("newsList");
+            const newsItems = newsList.getElementsByTagName("li");
+
+            for (let i = 0; i < newsItems.length; i++) {
+                const title = newsItems[i].querySelector("strong").textContent.toLowerCase();
+                const date = newsItems[i].querySelector("em").textContent.toLowerCase();
+                if (title.includes(searchTerm) || date.includes(searchTerm)) {
+                    newsItems[i].style.display = ""; // Mostrar item
+                } else {
+                    newsItems[i].style.display = "none"; // Esconder item
+                }
+            }
         }
     </script>
 </body>
