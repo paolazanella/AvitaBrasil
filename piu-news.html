@@ -46,6 +46,11 @@
         button:hover {
             background-color: #d5c97a; /* Amarelo mais escuro ao passar o mouse */
         }
+        #newsForm {
+            display: none;
+            margin: 20px 0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -56,25 +61,52 @@
         <ul id="newsList">
             <!-- As notícias serão adicionadas aqui -->
         </ul>
-        <button onclick="addNews()">Adicionar Notícia</button>
+        <button onclick="showForm()">Adicionar Notícia</button>
+
+        <div id="newsForm">
+            <h2>Adicionar Nova Notícia</h2>
+            <input type="text" id="newsTitle" placeholder="Título da notícia" required><br>
+            <input type="text" id="newsLink" placeholder="Link da notícia" required><br>
+            <input type="text" id="newsDate" placeholder="Data (dd/mm/aaaa)" required><br>
+            <button onclick="addNews()">Concluir</button>
+            <button onclick="hideForm()">Cancelar</button>
+        </div>
     </main>
 
     <script>
         const correctPassword = "senha123"; // Defina a senha aqui
 
-        function addNews() {
+        function showForm() {
             const password = prompt("Digite a senha para adicionar uma notícia:");
             if (password === correctPassword) {
-                const newsTitle = prompt("Digite o título da notícia:");
-                const newsDate = new Date().toLocaleDateString();
-                if (newsTitle) {
-                    const newsList = document.getElementById("newsList");
-                    const listItem = document.createElement("li");
-                    listItem.textContent = `${newsTitle} - ${newsDate}`;
-                    newsList.appendChild(listItem);
-                }
+                document.getElementById("newsForm").style.display = "block";
             } else {
                 alert("Senha incorreta!");
+            }
+        }
+
+        function hideForm() {
+            document.getElementById("newsForm").style.display = "none";
+        }
+
+        function addNews() {
+            const newsTitle = document.getElementById("newsTitle").value;
+            const newsLink = document.getElementById("newsLink").value;
+            const newsDate = document.getElementById("newsDate").value;
+
+            if (newsTitle && newsLink && newsDate) {
+                const newsList = document.getElementById("newsList");
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${newsTitle}</strong> <br> <a href="${newsLink}" target="_blank">${newsLink}</a> <br> <em>${newsDate}</em>`;
+                newsList.appendChild(listItem);
+
+                // Limpa os campos e esconde o formulário
+                document.getElementById("newsTitle").value = '';
+                document.getElementById("newsLink").value = '';
+                document.getElementById("newsDate").value = '';
+                hideForm();
+            } else {
+                alert("Por favor, preencha todos os campos.");
             }
         }
     </script>
