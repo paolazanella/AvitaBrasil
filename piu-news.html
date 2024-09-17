@@ -31,20 +31,31 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
         }
         button {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #f0e68c; /* Amarelo claro */
-            color: black; /* Texto preto */
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
+        button.add {
+            background-color: #f0e68c; /* Amarelo claro */
+            color: black; /* Texto preto */
+        }
+        button.add:hover {
             background-color: #d5c97a; /* Amarelo mais escuro ao passar o mouse */
+        }
+        button.delete {
+            background-color: #ff4c4c; /* Vermelho para deletar */
+            color: white; /* Texto branco */
+            margin-top: 10px; /* Margem para espaçamento */
+        }
+        button.delete:hover {
+            background-color: #e63939; /* Vermelho mais escuro ao passar o mouse */
         }
         #newsForm {
             display: none;
@@ -76,25 +87,47 @@
         <ul id="newsList">
             <!-- As notícias serão adicionadas aqui -->
         </ul>
-        <button onclick="showForm()">Adicionar Notícia</button>
+        <button class="add" onclick="showAddForm()">Adicionar Notícia</button>
 
         <div id="newsForm">
-            <h2>Adicionar Nova Notícia</h2>
+            <h2>Adicionar ou Editar Notícia</h2>
             <input type="text" id="newsTitle" placeholder="Título da notícia" required><br>
             <input type="text" id="newsLink" placeholder="Link da notícia" required><br>
             <input type="text" id="newsDate" placeholder="Data (dd/mm/aaaa)" required><br>
-            <button onclick="addNews()">Concluir</button>
-            <button onclick="hideForm()">Cancelar</button>
+            <button class="add" onclick="addNews()">Concluir</button>
+            <button class="delete" onclick="deleteNews(editingIndex)" style="display:none;">Deletar Notícia</button>
+            <button class="add" onclick="hideForm()">Cancelar</button>
         </div>
     </main>
 
     <script>
         const correctPassword = "senha123"; // Defina a senha aqui
+        let editingIndex = null;
 
-        function showForm() {
+        function showAddForm() {
             const password = prompt("Digite a senha para adicionar uma notícia:");
             if (password === correctPassword) {
+                editingIndex = null; // Resetar índice de edição
+                clearForm();
                 document.getElementById("newsForm").style.display = "block";
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
+
+        function showEditForm(index) {
+            const password = prompt("Digite a senha para editar a notícia:");
+            if (password === correctPassword) {
+                editingIndex = index;
+                const newsList = document.getElementById("newsList");
+                const newsItem = newsList.children[index];
+
+                document.getElementById("newsTitle").value = newsItem.querySelector("strong").textContent;
+                document.getElementById("newsLink").value = newsItem.querySelector("a").href;
+                document.getElementById("newsDate").value = newsItem.querySelector("em").textContent;
+
+                document.getElementById("newsForm").style.display = "block";
+                document.querySelector(".delete").style.display = "block"; // Mostrar botão de deletar
             } else {
                 alert("Senha incorreta!");
             }
@@ -102,6 +135,17 @@
 
         function hideForm() {
             document.getElementById("newsForm").style.display = "none";
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById("newsTitle").value = '';
+            document.getElementById("newsLink").value = '';
+            document.getElementById("newsDate").value = '';
+            if (editingIndex !== null) {
+                document.querySelector(".delete").style.display = "none"; // Esconder botão de deletar
+            }
+            editingIndex = null;
         }
 
         function addNews() {
@@ -111,18 +155,34 @@
 
             if (newsTitle && newsLink && newsDate) {
                 const newsList = document.getElementById("newsList");
-                const listItem = document.createElement("li");
-                listItem.innerHTML = `<strong>${newsTitle}</strong> <br> <a href="${newsLink}" target="_blank">${newsLink}</a> <br> <em>${newsDate}</em>`;
-                newsList.appendChild(listItem);
-
-                // Limpa os campos e esconde o formulário
-                document.getElementById("newsTitle").value = '';
-                document.getElementById("newsLink").value = '';
-                document.getElementById("newsDate").value = '';
+                if (editingIndex === null) {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <strong>${newsTitle}</strong> <br>
+                        <a href="${newsLink}" target="_blank">${newsLink}</a> <br>
+                        <em>${newsDate}</em>
+                        <button class="editBtn" onclick="showEditForm(${newsList.children.length})">Editar</button>
+                    `;
+                    newsList.appendChild(listItem);
+                } else {
+                    const newsItem = newsList.children[editingIndex];
+                    newsItem.innerHTML = `
+                        <strong>${newsTitle}</strong> <br>
+                        <a href="${newsLink}" target="_blank">${newsLink}</a> <br>
+                        <em>${newsDate}</em>
+                        <button class="editBtn" onclick="showEditForm(${editingIndex})">Editar</button>
+                    `;
+                }
                 hideForm();
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
+        }
+
+        function deleteNews(index) {
+            const newsList = document.getElementById("newsList");
+            newsList.removeChild(newsList.children[index]);
+            hideForm();
         }
     </script>
 </body>
