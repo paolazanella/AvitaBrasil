@@ -1,190 +1,208 @@
 html, body {
-    margin: 0; /* Remove margens padrão */
-    padding: 0; /* Remove padding padrão */
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    font-family: Arial, sans-serif; /* Fonte padrão */
-    
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
 }
 
 .header-background {
-    background-image: url('imagens/header.jpg'); /* Substitua pela URL da sua imagem */
-    background-size: cover; /* Mantém a imagem coberta */
-    background-position: center 70%; /* Ajusta para mostrar mais da parte inferior */
-    padding: 40px; /* Espaçamento interno */
-    min-height: 300px; /* Altura mínima do cabeçalho */
-    position: relative; /* Para permitir posicionamento absoluto dos filhos */
+    background-image: url('imagens/header.jpg');
+    background-size: cover;
+    background-position: center 70%;
+    padding: 40px;
+    min-height: 300px;
+    position: relative;
 }
 
-/* Estilo do h1 */
 h1 {
-    font-size: clamp(1.5rem, 2vw, 3rem); /* Define tamanho entre 1.5rem e 3rem de forma adaptável */
-    color: rgb(255, 255, 255); /* Azul escuro */ /* Cor do texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);/* Sombra para melhorar a legibilidade */
-    font-family: 'Roboto', sans-serif; /* Nova fonte */
-    position: absolute; /* Posiciona o h1 de forma absoluta */
-    top: 20px; /* Distância do topo */
-    left: 20px; /* Distância da esquerda */
+    font-size: clamp(1.5rem, 2vw, 3rem);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
-/* Estilo do Carrossel */
 .carousel {
     position: relative;
-    max-width: 800px; /* Largura máxima do carrossel */
-    margin: 40px auto; /* Centraliza horizontalmente */
-    overflow: hidden; /* Oculta itens que saem do contêiner */
-    background-color: #f0f0f0; /* Cor de fundo clara */
-    border-radius: 10px; 
-    padding: 20px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
-
+    max-width: 800px;
+    margin: 40px auto;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-inner {
-    display: flex; /* Mantém os itens em uma linha */
-    transition: transform 0.5s ease; /* Transição suave */
+    display: flex;
+    transition: transform 0.5s ease;
+    flex-wrap: nowrap;
 }
 
 .carousel-item {
-    flex: 0 0 100%; /* Cada item ocupa 100% da largura do carrossel */
+    flex: 0 0 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px; /* Altura fixa para tornar os itens mais quadrados */
-    padding: 20px; /* Espaçamento interno */
-    box-sizing: border-box; /* Inclui padding na largura total */
+    height: auto; /* Altura automática para se ajustar ao conteúdo */
+    padding: 10px; /* Reduz o padding em telas menores */
+    box-sizing: border-box;
 }
 
 .carousel-circle {
-    background-color: #fff; /* Cor de fundo */
-    border-radius: 10px; /* Cantos arredondados */
-    padding: 20px; /* Espaçamento interno */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    text-align: center; /* Centraliza o texto */
-    width: 90%; /* Largura do círculo */
-    height: 90%; /* Altura do círculo */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    height: 90%;
     display: flex;
-    flex-direction: column; /* Para alinhar texto verticalmente */
-    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .carousel-control {
-    position: absolute; /* Posiciona os botões */
-    top: 50%; /* Centraliza verticalmente */
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
-    color: rgba(13, 13, 13, 0.316); /* Cor do ícone */
-    border: none; /* Remove a borda */
-    background: none; /* Remove o fundo */
-    cursor: pointer; /* Cursor de ponteiro */
-    font-size: 24px; /* Tamanho do ícone */
-    z-index: 1; /* Garante que os botões fiquem na frente */
+    color: rgba(13, 13, 13, 0.316);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
 }
 
 .prev {
-    left: 10px; /* Posição do botão anterior */
+    left: 10px;
 }
 
 .next {
-    right: 10px; /* Posição do botão próximo */
+    right: 10px;
 }
 
-/* Efeito ao passar o mouse */
 .carousel-control:hover {
-    color: rgba(255, 255, 255, 0.8); /* Leve aumento na opacidade ao passar o mouse */
-}
-/* Media Queries para telas menores */
-@media (max-width: 768px) {
-    .carousel-inner {
-        justify-content: flex-start; /* Itens se alinham à esquerda */
-    }
-    .carousel-item {
-        width: 120px; /* Ajusta a largura dos itens em telas menores */
-        height: 120px; /* Ajusta a altura dos itens em telas menores */
-    }
-    h1 {
-        font-size: clamp(2rem, 4vw, 5rem); /* Ajusta o tamanho da fonte para telas menores */
-    }
+    color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1); /* Aumento leve ao passar o mouse */
 }
 
-/* Seção de Notícias */
 .news-section {
-    padding: 20px; /* Espaçamento interno */
-    text-align: center; /* Centraliza o texto */
-    background-color: #f9f9f9; /* Cor de fundo */
-    border-bottom: 1px solid #ccc; /* Linha abaixo da seção */
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
 }
 
 .news-section h2 {
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
-    font-size: 1.5em; /* Tamanho da fonte do título */
-    color: #333; /* Cor do texto do título */
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
 }
 
-/* Seção da Equipe */
 .team-section {
-    padding: 40px 20px; /* Espaçamento interno */
-    text-align: center; /* Centraliza o texto */
+    padding: 40px 20px;
+    text-align: center;
 }
 
 .team-section h2 {
-    margin-bottom: 20px; /* Espaçamento abaixo do título */
-    font-size: 1.5em; /* Tamanho da fonte do título */
-    color: #333; /* Cor do texto do título */
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
 }
 
 .team-members {
-    display: flex; /* Flexbox para alinhar os membros da equipe */
-    justify-content: center; /* Centraliza os membros */
-    margin-bottom: 20px; /* Espaçamento abaixo da seção de membros */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .team-member {
-    margin: 0 15px; /* Margem entre os membros */
-    text-align: center; /* Centraliza o texto */
-}
-
-.separator {
-    width: 2px; /* Largura da linha */
-    height: 100px; /* Altura da linha */
-    background-color: #ccc; /* Cor da linha */
+    flex: 1 1 30%; /* Cada membro ocupa até 30% da largura em telas maiores */
+    margin: 10px; /* Margem entre os membros */
+    text-align: center;
 }
 
 .member-photo {
-    width: 150px; /* Largura da foto */
-    height: auto; /* Mantém a proporção */
+    width: 100%;
+    height: auto;
+    max-width: 150px; /* Limita a largura máxima */
     border-radius: 10px; /* Bordas arredondadas */
 }
 
 .team-description {
-    max-width: 800px; /* Largura máxima do texto */
-    margin: 20px auto; /* Centraliza a descrição */
-    font-size: 1em; /* Tamanho da fonte */
-    color: #555; /* Cor do texto */
-    text-align: center; /* Centraliza o texto */
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 1em;
+    color: #555;
+    text-align: center;
 }
 
 .description-background {
-    background-color: #e7e5e4; /* Cor de fundo (exemplo: azul claro) */
-    padding: 15px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    display: inline-block; /* Para que o fundo se ajuste ao tamanho do texto */
-    max-width: 800px; /* Largura máxima do texto */
-    margin: 0 auto; /* Centraliza o bloco */
+    background-color: #e7e5e4;
+    padding: 15px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .contact-info {
-    margin-top: 20px; /* Espaço acima das informações de contato */
-    font-size: 0.9em; /* Tamanho da fonte menor */
-    text-align: center; /* Centraliza o texto */
-    background-color: #6e7e9f; /* Cor de fundo */
-    padding: 10px 0; /* Espaçamento interno */
+    margin-top: 20px;
+    font-size: 0.9em;
+    text-align: center;
+    background-color: #6e7e9f;
+    padding: 10px 0;
 }
 
 .contact-info a {
-    text-decoration: none; /* Remove sublinhado dos links */
-    color: black; /* Cor do link */
+    text-decoration: none;
+    color: black;
 }
 
 .contact-info a:hover {
-    text-decoration: underline; /* Sublinha ao passar o mouse */
+    text-decoration: underline;
+}
+
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: auto; /* Altura automática para se ajustar ao conteúdo */
+        padding: 10px; /* Reduz o padding em telas menores */
+    }
+
+    h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .team-member {
+        flex: 1 1 100%; /* Cada membro ocupa 100% da largura em telas menores */
+        margin-bottom: 20px; /* Espaço entre os membros */
+    }
+
+    .member-photo {
+        width: 80%; /* Reduz a largura da foto em telas menores */
+        max-width: 150px; /* Limita a largura máxima */
+    }
+
+    .carousel {
+        padding: 10px; /* Reduz o padding do carrossel */
+    }
+
+    .news-section {
+        padding: 15px; /* Ajusta o padding da seção de notícias */
+    }
+
+    .team-description {
+        font-size: 0.9em; /* Reduz o tamanho da fonte em telas menores */
+    }
+    
+    .header-background {
+        background-position: center; /* Centraliza a imagem em telas menores */
+        padding: 20px; /* Reduz o padding em telas menores */
+        min-height: 200px; /* Altura mínima reduzida para dispositivos menores */
+    }
 }
