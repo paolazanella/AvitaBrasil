@@ -117,6 +117,7 @@
     <script>
         const correctPassword = "senha123"; // Defina a senha aqui
         let editingIndex = null;
+        let newsArray = []; // Array para armazenar as notícias
 
         function showAddForm() {
             const password = prompt("Digite a senha para adicionar uma notícia:");
@@ -133,12 +134,11 @@
             const password = prompt("Digite a senha para editar a notícia:");
             if (password === correctPassword) {
                 editingIndex = index;
-                const newsList = document.getElementById("newsList");
-                const newsItem = newsList.children[index];
+                const newsItem = newsArray[index];
 
-                document.getElementById("newsTitle").value = newsItem.querySelector("strong").textContent;
-                document.getElementById("newsLink").value = newsItem.querySelector("a").href;
-                document.getElementById("newsDate").value = newsItem.querySelector("em").textContent;
+                document.getElementById("newsTitle").value = newsItem.title;
+                document.getElementById("newsLink").value = newsItem.link;
+                document.getElementById("newsDate").value = newsItem.date;
 
                 document.getElementById("newsForm").style.display = "block";
                 document.querySelector(".delete").style.display = "block"; // Mostrar botão de deletar
@@ -196,34 +196,48 @@
             }
 
             if (newsTitle && newsLink && newsDate) {
-                const newsList = document.getElementById("newsList");
+                const newsItem = {
+                    title: newsTitle,
+                    link: newsLink,
+                    date: newsDate,
+                    timestamp: new Date(newsDate.split('/').reverse().join('-')).getTime() // Convertendo a data para timestamp
+                };
+
                 if (editingIndex === null) {
-                    const listItem = document.createElement("li");
-                    listItem.innerHTML = `
-                        <strong>${newsTitle}</strong> <br>
-                        <a href="${newsLink}" target="_blank">${newsLink}</a> <br>
-                        <em>${newsDate}</em>
-                        <button class="editBtn" onclick="showEditForm(${newsList.children.length})">Editar</button>
-                    `;
-                    newsList.appendChild(listItem);
+                    newsArray.push(newsItem); // Adiciona nova notícia
                 } else {
-                    const newsItem = newsList.children[editingIndex];
-                    newsItem.innerHTML = `
-                        <strong>${newsTitle}</strong> <br>
-                        <a href="${newsLink}" target="_blank">${newsLink}</a> <br>
-                        <em>${newsDate}</em>
-                        <button class="editBtn" onclick="showEditForm(${editingIndex})">Editar</button>
-                    `;
+                    newsArray[editingIndex] = newsItem; // Edita notícia existente
                 }
+
+                // Ordena as notícias por data (mais recente primeiro)
+                newsArray.sort((a, b) => b.timestamp - a.timestamp);
+
+                renderNewsList();
                 hideForm();
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
         }
 
-        function deleteNews(index) {
+        function renderNewsList() {
             const newsList = document.getElementById("newsList");
-            newsList.removeChild(newsList.children[index]);
+            newsList.innerHTML = ''; // Limpa a lista existente
+
+            newsArray.forEach((newsItem, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>${newsItem.title}</strong> <br>
+                    <a href="${newsItem.link}" target="_blank">${newsItem.link}</a> <br>
+                    <em>${newsItem.date}</em>
+                    <button class="editBtn" onclick="showEditForm(${index})">Editar</button>
+                `;
+                newsList.appendChild(listItem);
+            });
+        }
+
+        function deleteNews(index) {
+            newsArray.splice(index, 1); // Remove a notícia do array
+            renderNewsList();
             hideForm();
         }
 
