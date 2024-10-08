@@ -6,24 +6,60 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-.header-background {
-    background-image: url('imagens/header/header.jpg');
-    background-size: cover;
-    background-position: center 70%;
-    padding: 40px;
-    min-height: 300px;
-    position: relative;
+header {
+    background-image: url('imagens/header/cabecalho.jpg'); /* Gradiente de fundo */
+    color: white; /* Cor do texto */
+    padding: 20px; /* Espaçamento superior e inferior */
+    position: relative; /* Para posicionamento dos elementos */
 }
 
-h1 {
-    font-size: clamp(1.5rem, 2vw, 3rem);
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-    font-family: 'Roboto', sans-serif;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.header-container {
+    max-width: 1200px; /* Largura máxima do cabeçalho */
+    margin: 0 auto; /* Centraliza o cabeçalho na página */
+    display: flex; /* Usar flexbox para alinhar os elementos */
+    flex-direction: column; /* Muda para coluna por padrão */
+    align-items: flex-start; /* Alinha itens à esquerda */
 }
+
+.top-left {
+    font-size: 1.2em; /* Tamanho da fonte */
+    color: white; /* Cor do texto */
+    margin-bottom: 10px; /* Espaço abaixo do texto Avita Brasil */
+}
+
+.middle {
+    display: flex; /* Usar flexbox para alinhar slogan e logo */
+    flex-direction: row; /* Coloca logo e slogan lado a lado */
+    align-items: center; /* Alinha itens no centro verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin: 10px 0; /* Espaçamento vertical */
+    width: 100%; /* Garante que ocupe toda a largura */
+}
+
+.logo {
+    margin-right: 15px; /* Espaço entre o logo e o slogan */
+}
+
+.logo img {
+    height: 100px; /* Altura do logo */
+}
+
+.slogan {
+    text-align: center; /* Centraliza o texto do slogan */
+    font-size: 1.5em; /* Ajusta o tamanho da fonte do slogan */
+}
+
+.bottom-right {
+    position: absolute; /* Para posicionar no canto inferior direito */
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da direita */
+}
+
+.bottom-right img {
+    height: 50px; /* Altura do logo UFSM */
+}
+
+
 
 .carousel {
     position: relative;
@@ -200,10 +236,27 @@ h1 {
         font-size: 0.9em; /* Reduz o tamanho da fonte em telas menores */
     }
     
-    .header-background {
-        background-position: center; /* Centraliza a imagem em telas menores */
-        padding: 20px; /* Reduz o padding em telas menores */
-        min-height: 200px; /* Altura mínima reduzida para dispositivos menores */
+   /* header*/
+   .middle {
+    flex-direction: column; /* Muda para coluna em telas menores */
+    align-items: center; /* Centraliza logo e slogan */
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Espaço abaixo do logo */
+    }
+
+    .logo img {
+        height: 80px; /* Reduz a altura do logo em telas menores */
+    }
+
+    .slogan {
+        font-size: 1.2em; /* Reduz o tamanho da fonte do slogan em telas menores */
+    }
+    .bottom-right {
+        position: static; /* Muda para posicionamento estático */
+        margin-top: 20px; /* Espaço acima do logo UFSM */
+        align-self: flex-end; /* Alinha à direita no container */
     }
 }
 
@@ -216,11 +269,11 @@ section {
 
 h2 {
     text-align: center;
-    margin-top: 40px; /* Aumenta a distância superior para 40px */
-    margin-bottom: 50px; /* Mantém a distância inferior para 50px */
+    margin-bottom: 50px; /* Aumenta a distância para 50px */
     font-size: 2em; /* Tamanho da fonte do título */
     color: #333; /* Cor do título */
 }
+
 .produtos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Colunas responsivas */
