@@ -7,7 +7,7 @@ html, body {
 }
 
 .header-background {
-    background-image: url('imagens/header.jpg');
+    background-image: url('imagens/header/header.jpg');
     background-size: cover;
     background-position: center 70%;
     padding: 40px;
@@ -91,7 +91,7 @@ h1 {
 }
 
 .news-section {
-    padding: 20px;
+    padding: 0px;
     text-align: center;
     background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
@@ -205,4 +205,49 @@ h1 {
         padding: 20px; /* Reduz o padding em telas menores */
         min-height: 200px; /* Altura mínima reduzida para dispositivos menores */
     }
+}
+
+
+
+section {
+    padding: 40px;
+    background-color: #f9f9f9; /* Fundo claro para destacar os produtos */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 40px; /* Aumenta a distância superior para 40px */
+    margin-bottom: 50px; /* Mantém a distância inferior para 50px */
+    font-size: 2em; /* Tamanho da fonte do título */
+    color: #333; /* Cor do título */
+}
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Colunas responsivas */
+    gap: 20px; /* Espaço entre os produtos */
+    padding: 0 20px; /* Padding lateral */
+}
+
+.produto {
+    background-color: white; /* Fundo branco para os produtos */
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    overflow: hidden; /* Para manter a borda arredondada nas imagens */
+    transition: transform 0.2s; /* Efeito de transição */
+}
+
+.produto:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+.produto img {
+    width: 100%; /* Imagem ocupa toda a largura do container */
+    height: auto; /* Manter a proporção da imagem */
+}
+
+.produto h3 {
+    text-align: center;
+    padding: 10px; /* Espaço interno */
+    font-size: 1.2em; /* Tamanho da fonte do nome do produto */
+    color: #555; /* Cor do texto do produto */
 }

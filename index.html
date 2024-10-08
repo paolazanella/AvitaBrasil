@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avita Brasil</title>
-    <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="imagens/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -17,6 +17,8 @@
     </header>
 
     <main>
+        
+       
         <div class="carousel">
             <button class="carousel-control prev" aria-label="Slide anterior" onclick="moveSlide(-1)">&#10094;</button>
             <div class="carousel-inner">
@@ -43,24 +45,57 @@
         </div>
 
         <div class="news-section">
-            <h2>Notícias</h2>
+            <section>
+                <h2>Nossos Produtos</h2>
+                <div class="produtos">
+                    <div class="produto">
+                        <img src="imagens/produtos/ovos_classicos.jpg" alt="Ovos Clássicos">
+                        <h3>Ovos Clássicos</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/ovos_vital.jpg" alt="Ovos Vital">
+                        <h3>Ovos Vital</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/ovos_congelados.jpg" alt="Ovos Congelados">
+                        <h3>Ovos Congelados</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/ovos_integrais.jpg" alt="Ovos Integrais">
+                        <h3>Ovos Integrais</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/ovos_organicos.jpg" alt="Ovos Orgânicos Pasteurizados">
+                        <h3>Ovos Orgânicos Pasteurizados</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/gema_desidratada.jpg" alt="Gema Desidratada">
+                        <h3>Gema Desidratada</h3>
+                    </div>
+                    <div class="produto">
+                        <img src="imagens/produtos/clara_desidratada.jpg" alt="Clara Desidratada">
+                        <h3>Clara Desidratada</h3>
+                    </div>
+                </div>
+            </section>
         </div>
+        
 
         <div class="team-section">
             <h2>Nossa Equipe</h2>
             <div class="team-members">
                 <div class="team-member">
-                    <img src="imagens/rafaela.jpg" alt="Rafaela Rocha, Gerente de Produção" class="member-photo">
+                    <img src="imagens/equipe/rafaela.jpg" alt="Rafaela Rocha, Gerente de Produção" class="member-photo">
                     <h3>Rafaela Rocha</h3>
                     <p>Gerente de Produção</p>
                 </div>
                 <div class="team-member">
-                    <img src="imagens/filipe.jpg" alt="Filipe Urnal, CEO" class="member-photo">
+                    <img src="imagens/equipe/filipe.jpg" alt="Filipe Urnal, CEO" class="member-photo">
                     <h3>Filipe Urnal</h3>
                     <p>CEO</p>
                 </div>
                 <div class="team-member">
-                    <img src="imagens/julia.jpg" alt="Júlia Silva, Especialista em vendas" class="member-photo">
+                    <img src="imagens/equipe/julia.jpg" alt="Júlia Silva, Especialista em vendas" class="member-photo">
                     <h3>Júlia Silva</h3>
                     <p>Especialista em vendas</p>
                 </div>
@@ -79,7 +114,9 @@
                 </p>
             </div>
         </div>
+    
     </main>
+ 
 
     <script src="script.js"></script>
 </body>
